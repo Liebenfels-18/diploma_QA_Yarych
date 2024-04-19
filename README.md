@@ -3,9 +3,9 @@
 Дипломный проект представляет собой автоматизацию тестирования комплексного сервиса.
 
 ## Документы
-* [План автоматизации]()
-* [Отчет по итогам тестирования]()
-* [Отчет по итогам автоматизированного тестирования]()
+* [План автоматизации](https://github.com/Liebenfels-18/diploma_QA_Yarych/blob/master/Plan.md)
+* [Отчет по итогам тестирования](https://github.com/Liebenfels-18/diploma_QA_Yarych/blob/master/Report.md)
+* [Отчет по итогам автоматизированного тестирования](https://github.com/Liebenfels-18/diploma_QA_Yarych/blob/master/Summary.md)
 
 На локальном компьютере заранее должны быть установлены IntelliJ IDEA и Docker.
 
