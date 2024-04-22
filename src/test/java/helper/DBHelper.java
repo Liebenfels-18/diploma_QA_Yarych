@@ -2,6 +2,7 @@ package helper;
 
 import lombok.SneakyThrows;
 import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
 
 import java.sql.Connection;
@@ -18,37 +19,18 @@ public class DBHelper {
     private static final String password = System.getProperty("passwordDB");
 
 
-    public static String getDataFromDB(String query) throws SQLException {
-        String result = "";
-        var runner = new QueryRunner();
-        try
-                (var conn = DriverManager.getConnection(url, user, password)) {
-
-            result = runner.query(conn, query, new ScalarHandler<String>());
-            //System.out.println(result);
-            return result;
-        }
-    }
-
-    @SneakyThrows
-    public static String getCreditID() throws SQLException {
-        var creditId = "SELECT credit_id FROM order_entity ORDER BY created DESC limit 1";
-        return getDataFromDB(creditId);
-    }
-
-    @SneakyThrows
-    public static String getPaymentID() throws SQLException {
-        var paymentId = "SELECT payment_id FROM order_entity ORDER BY created DESC limit 1";
-        return getDataFromDB(paymentId);
-    }
-
-
     @SneakyThrows
     public static void runSQL() {
         request = new QueryRunner();
         conn = DriverManager.getConnection(url, user, password);
     }
 
+    @SneakyThrows
+    public static OrderEntity getOrderEntityData(){
+        runSQL();
+        var codeSQL = "SELECT * FROM order_entity ORDER BY created DESC LIMIT 1;";
+        return request.query(conn,codeSQL, new BeanHandler<>(OrderEntity.class));
+    }
     @SneakyThrows
     public static String getCreditStatus(String paymentId) {
         runSQL();

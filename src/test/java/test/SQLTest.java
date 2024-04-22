@@ -38,28 +38,28 @@ public class SQLTest {
     }
 
     public static void checkStatusPaymentApproved() throws SQLException {
-        String id = DBHelper.getPaymentID();
+        String id = DBHelper.getOrderEntityData().getPayment_id();
         String actual = DBHelper.getStatus(id);
         String expected = "APPROVED";
         assertEquals(expected, actual);
     }
 
     public static void checkStatusPaymentDeclined() throws SQLException {
-        String id = DBHelper.getPaymentID();
+        String id = DBHelper.getOrderEntityData().getPayment_id();
         String actual = DBHelper.getStatus(id);
         String expected = "DECLINED";
         assertEquals(expected, actual);
     }
 
     public static void checkStatusCreditApproved() throws SQLException {
-        String id = DBHelper.getCreditID();
+        String id = DBHelper.getOrderEntityData().getCredit_id();
         String actual = DBHelper.getCreditStatus(id);
         String expected = "APPROVED";
         assertEquals(expected, actual);
     }
 
     public static void checkStatusCreditDeclined() throws SQLException {
-        String id = DBHelper.getCreditID();
+        String id = DBHelper.getOrderEntityData().getCredit_id();
         String actual = DBHelper.getCreditStatus(id);
         String expected = "DECLINED";
         assertEquals(expected, actual);
