@@ -6,7 +6,7 @@ plugins {
 
 group 'org.example'
 version '1.0-SNAPSHOT'
-sourceCompatibility = 11
+sourceCompatibility = 16
 compileJava.options.encoding = 'UTF-8'
 compileTestJava.options.encoding = 'UTF-8'
 
@@ -54,3 +54,4 @@ test {
     systemProperty("userDB",System.getProperty("userDB","app"))
     systemProperty("passwordDB",System.getProperty("passwordDB","pass"))
 }
+targetCompatibility = JavaVersion.VERSION_16

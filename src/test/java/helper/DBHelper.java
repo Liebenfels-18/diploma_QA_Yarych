@@ -6,6 +6,7 @@ import org.apache.commons.dbutils.handlers.ScalarHandler;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -16,24 +17,36 @@ public class DBHelper {
     private static final String user = System.getProperty("userDB");
     private static final String password = System.getProperty("passwordDB");
 
+
+    public static String getDataFromDB(String query) throws SQLException {
+        String result = "";
+        var runner = new QueryRunner();
+        try
+                (var conn = DriverManager.getConnection(url, user, password)) {
+
+            result = runner.query(conn, query, new ScalarHandler<String>());
+            //System.out.println(result);
+            return result;
+        }
+    }
+
+    @SneakyThrows
+    public static String getCreditID() throws SQLException {
+        var creditId = "SELECT credit_id FROM order_entity ORDER BY created DESC limit 1";
+        return getDataFromDB(creditId);
+    }
+
+    @SneakyThrows
+    public static String getPaymentID() throws SQLException {
+        var paymentId = "SELECT payment_id FROM order_entity ORDER BY created DESC limit 1";
+        return getDataFromDB(paymentId);
+    }
+
+
     @SneakyThrows
     public static void runSQL() {
         request = new QueryRunner();
         conn = DriverManager.getConnection(url, user, password);
-    }
-
-    @SneakyThrows
-    public static String getCreditID() {
-        runSQL();
-        var data = "SELECT credit_id FROM order_entity ORDER BY created DESC limit 1";
-        return request.query(conn, data, new ScalarHandler<>());
-    }
-
-    @SneakyThrows
-    public static String getPaymentID() {
-        runSQL();
-        var data = "SELECT payment_id FROM order_entity ORDER BY created DESC limit 1";
-        return request.query(conn, data, new ScalarHandler<>());
     }
 
     @SneakyThrows
@@ -50,32 +63,4 @@ public class DBHelper {
         return request.query(conn, data, new ScalarHandler<>(), paymentId);
     }
 
-
-    public static void checkStatusPaymentApproved() {
-        String id = DBHelper.getPaymentID();
-        String actual = DBHelper.getStatus(id);
-        String expected = "APPROVED";
-        assertEquals(expected, actual);
-    }
-
-    public static void checkStatusPaymentDeclined() {
-        String id = DBHelper.getPaymentID();
-        String actual = DBHelper.getStatus(id);
-        String expected = "DECLINED";
-        assertEquals(expected, actual);
-    }
-
-    public static void checkStatusCreditApproved() {
-        String id = DBHelper.getCreditID();
-        String actual = DBHelper.getCreditStatus(id);
-        String expected = "APPROVED";
-        assertEquals(expected, actual);
-    }
-
-    public static void checkStatusCreditDeclined() {
-        String id = DBHelper.getCreditID();
-        String actual = DBHelper.getCreditStatus(id);
-        String expected = "DECLINED";
-        assertEquals(expected, actual);
-    }
 }

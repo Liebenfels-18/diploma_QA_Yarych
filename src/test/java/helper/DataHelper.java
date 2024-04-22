@@ -2,6 +2,10 @@ package helper;
 
 import com.github.javafaker.Faker;
 import dataCard.CardInformation;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Random;
 
 import java.time.LocalDate;
@@ -33,14 +37,15 @@ public class DataHelper {
         return String.valueOf(date);
     }
 
-    public static String getYear(){
-        LocalDate date = LocalDate.now().plusYears(5);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("YY");
-        return formatter.format(date);
+    public static String getYear() throws ParseException {
+        Date date = new SimpleDateFormat("yy").parse(LocalDate.now().plusYears(5).toString());
+        String pattern = "yy";
+        String format = new SimpleDateFormat(pattern).format(date);
+        return format;
     }
 
     public static String getInvalidYear(){
-        int date = faker.number().numberBetween(1, 23);
+        int date = faker.number().numberBetween(10, 23);
         return String.valueOf(date);
     }
 
@@ -64,11 +69,11 @@ public class DataHelper {
         return "4444 4444 44";
     }
 
-    public static CardInformation getApprovedCard() {
+    public static CardInformation getApprovedCard() throws ParseException {
         return new CardInformation(getApprovedCardNumber(), getMonth(), getYear(), getValidFullName(), getCVCCode());
     }
 
-    public static CardInformation getDeclinedCard() {
+    public static CardInformation getDeclinedCard() throws ParseException {
         return new CardInformation(getDeclinedCardNumber(), getMonth(), getYear(), getValidFullName(), getCVCCode());
     }
 }
