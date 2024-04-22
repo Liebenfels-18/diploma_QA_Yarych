@@ -13,20 +13,19 @@
 ## 2. Количество тест-кейсов
 
 - Всего тест-кейсов: 38
-![2024-04-20_00-10-21](https://github.com/Liebenfels-18/diploma_QA_Yarych/assets/69791271/623f7928-6181-4527-bec3-9ad7cea5bb1c)
-- Успешных тест-кейсов: 24
-- Неуспешных тест-кейсов: 14
+![2024-04-22_14-51-05](https://github.com/Liebenfels-18/diploma_QA_Yarych/assets/69791271/0b9522a5-3d17-4b62-8483-eeba812a799b)
+- Успешных тест-кейсов: 25
+- Неуспешных тест-кейсов: 13
 
-![2024-04-20_00-11-09](https://github.com/Liebenfels-18/diploma_QA_Yarych/assets/69791271/9cd6e569-a154-4db1-9203-c84732e2631b)
-![2024-04-20_00-11-31](https://github.com/Liebenfels-18/diploma_QA_Yarych/assets/69791271/4cd0691e-18a9-457e-9b8a-5124fd047df4)
-![2024-04-20_00-11-40](https://github.com/Liebenfels-18/diploma_QA_Yarych/assets/69791271/e070f1cd-5492-45a4-8293-9e5c1302c16c)
-
+![2024-04-22_14-51-36](https://github.com/Liebenfels-18/diploma_QA_Yarych/assets/69791271/b909f65c-1dd3-4312-a89a-dd5075e1a8d1)
+![2024-04-22_14-51-28](https://github.com/Liebenfels-18/diploma_QA_Yarych/assets/69791271/695034c2-e4ee-4a91-90a3-5364ebbc18df)
+![2024-04-22_14-51-17](https://github.com/Liebenfels-18/diploma_QA_Yarych/assets/69791271/36b27cbd-dd2e-4615-ae12-4d52aaed0b98)
 
 
 ## 3. Процент успешных/неуспешных тест-кейсов
 
-- Процент успешных: 63.15%
-- Процент неуспешных: 36.85%
+- Процент успешных: 65.78%
+- Процент неуспешных: 34.22%
 
 ## 4. Общие рекомендации
 
