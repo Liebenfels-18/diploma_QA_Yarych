@@ -37,37 +37,9 @@ public class SQLTest {
         SelenideLogger.removeListener("allure");
     }
 
-    public static void checkStatusPaymentApproved() throws SQLException {
-        String id = DBHelper.getOrderEntityData().getPayment_id();
-        String actual = DBHelper.getStatus(id);
-        String expected = "APPROVED";
-        assertEquals(expected, actual);
-    }
-
-    public static void checkStatusPaymentDeclined() throws SQLException {
-        String id = DBHelper.getOrderEntityData().getPayment_id();
-        String actual = DBHelper.getStatus(id);
-        String expected = "DECLINED";
-        assertEquals(expected, actual);
-    }
-
-    public static void checkStatusCreditApproved() throws SQLException {
-        String id = DBHelper.getOrderEntityData().getCredit_id();
-        String actual = DBHelper.getCreditStatus(id);
-        String expected = "APPROVED";
-        assertEquals(expected, actual);
-    }
-
-    public static void checkStatusCreditDeclined() throws SQLException {
-        String id = DBHelper.getOrderEntityData().getCredit_id();
-        String actual = DBHelper.getCreditStatus(id);
-        String expected = "DECLINED";
-        assertEquals(expected, actual);
-    }
-
     @Test
     @DisplayName("APPROVED Кредит")
-    public void checkCreditPaymentApprovedStatus() throws SQLException {
+    public void checkCreditPaymentApprovedStatus() {
         home.payment();
         PaymentPage payment = new PaymentPage();
         payment.enterValidCardData(DataHelper.getApprovedCardNumber(), data.getMonth(), data.getYear(), data.getName(), data.getCvc());
@@ -77,7 +49,7 @@ public class SQLTest {
 
     @Test
     @DisplayName("DECLINED Кредит")
-    public void checkCreditPaymentDeclinedStatus() throws SQLException {
+    public void checkCreditPaymentDeclinedStatus() {
         home.payment();
         PaymentPage payment = new PaymentPage();
         payment.enterValidCardData(DataHelper.getDeclinedCardNumber(), data.getMonth(), data.getYear(), data.getName(), data.getCvc());
@@ -86,7 +58,7 @@ public class SQLTest {
     }
     @Test
     @DisplayName("APPROVED")
-    public void checkPaymentApprovedStatus() throws SQLException {
+    public void checkPaymentApprovedStatus() {
         home.payment();
         PaymentPage payment = new PaymentPage();
         payment.enterValidCardData(DataHelper.getApprovedCardNumber(), data.getMonth(), data.getYear(), data.getName(), data.getCvc());
@@ -96,12 +68,40 @@ public class SQLTest {
 
     @Test
     @DisplayName("DECLINED")
-    public void checkPaymentDeclinedStatus() throws SQLException {
+    public void checkPaymentDeclinedStatus() {
         home.payment();
         PaymentPage payment = new PaymentPage();
         payment.enterValidCardData(DataHelper.getDeclinedCardNumber(), data.getMonth(), data.getYear(), data.getName(), data.getCvc());
         payment.checkAcceptedCardData();
         checkStatusPaymentDeclined();
+    }
+
+    private void checkStatusPaymentApproved() {
+        String id = DBHelper.getOrderEntityData().getPayment_id();
+        String actual = DBHelper.getStatus(id);
+        String expected = "APPROVED";
+        assertEquals(expected, actual);
+    }
+
+    private void checkStatusPaymentDeclined() {
+        String id = DBHelper.getOrderEntityData().getPayment_id();
+        String actual = DBHelper.getStatus(id);
+        String expected = "DECLINED";
+        assertEquals(expected, actual);
+    }
+
+    private void checkStatusCreditApproved() {
+        String id = DBHelper.getOrderEntityData().getCredit_id();
+        String actual = DBHelper.getCreditStatus(id);
+        String expected = "APPROVED";
+        assertEquals(expected, actual);
+    }
+
+    private void checkStatusCreditDeclined() {
+        String id = DBHelper.getOrderEntityData().getCredit_id();
+        String actual = DBHelper.getCreditStatus(id);
+        String expected = "DECLINED";
+        assertEquals(expected, actual);
     }
 
 }

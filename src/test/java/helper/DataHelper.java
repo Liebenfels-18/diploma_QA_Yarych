@@ -3,8 +3,10 @@ package helper;
 import com.github.javafaker.Faker;
 import dataCard.CardInformation;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
 
@@ -37,18 +39,16 @@ public class DataHelper {
         return String.valueOf(date);
     }
 
-    public static String getYear() throws ParseException {
-        Date date = new SimpleDateFormat("yy").parse(LocalDate.now().plusYears(5).toString());
-        String pattern = "yy";
-        String format = new SimpleDateFormat(pattern).format(date);
-        return format;
+    public static String getYear(){
+        LocalDate date = LocalDate.now().plusYears(5);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yy");
+        return formatter.format(date);
     }
 
     public static String getInvalidYear(){
         int date = faker.number().numberBetween(10, 23);
         return String.valueOf(date);
     }
-
 
     public static String getCVCCode() {
         return String.valueOf(faker.number().numberBetween(100, 999));
